@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Mental Health Library</h1>
+            <p>Here you can find a collection of resources to help you learn more about mental health and mental illness.</p>
+            
+            <!-- Formulario de filtrado -->
+            <form method="GET" action="">
+                <div class="mb-3">
+                    <label for="topic" class="form-label">Filter by Topic</label>
+                    <select class="form-control" name="topic" id="topic">
+                        <option value="">-- Select a topic --</option>
+                        <option value="anxiety" {% if selected_topic == "anxiety" %}selected{% endif %}>Anxiety</option>
+                        <option value="depression" {% if selected_topic == "depression" %}selected{% endif %}>Depression</option>
+                        <option value="stress" {% if selected_topic == "stress" %}selected{% endif %}>Stress</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Filter</button>
+                <a href="{% url 'library' %}" class="btn btn-secondary">Clear Filter</a>
+                
+            </form>
+
+            <p>Filtering by: {{ selected_topic }}</p>
+            
+            <div class="row">
+                {% for content in contents %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <img src="{{ content.image.url }}" class="card-img-top img-fluid" alt="{{ content.title }}" style="max-height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ content.title }}</h5>
+                                <p class="card-text">{{ content.description }}</p>
+                                <a href="{{ content.url }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="text-row mt-4">
+        <a href="{% url 'home' %}" class="btn btn-secondary">Return</a>
+    </div>
+</div>
+
+
+
+{% endblock content %}

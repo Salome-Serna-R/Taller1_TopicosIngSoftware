@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-gray-900 font-bold">Comment Details</h1>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8 bg-white p-4 rounded-lg shadow-lg">
+                <p><strong>Author:</strong> {{ comentario.autor.username }}</p>
+                <p><strong>Comment:</strong> {{ comentario.texto }}</p>
+
+                {% if mensaje_verificacion %}
+                <div class="alert alert-success mt-3" role="alert">
+                    <i class="fas fa-check-circle"></i>  
+                    This post has been useful to several people thanks to the number of likes it has received.                    
+                </div>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                    {% if es_favorito %}
+                        <a href="{% url 'marcar-favorito' comentario.id %}" class="btn btn-link w-100 mt-3">
+                            <i class="fas fa-star text-warning"></i> Not Favorite
+                        </a>
+                    {% else %}
+                        <a href="{% url 'marcar-favorito' comentario.id %}" class="btn btn-link w-100 mt-3">
+                            <i class="far fa-star text-secondary"></i> Favorite
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+                <div class="text-center mt-3">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'like-toggle' comentario.id %}" class="btn btn-link w-100 mt-3">
+                            {% if tiene_like %}
+                                <i class="fas fa-thumbs-up text-primary"></i> Unlike
+                            {% else %}
+                                <i class="far fa-thumbs-up text-secondary"></i> Like
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    <p>{{ total_likes }} Likes</p>
+                </div>
+
+                <!-- Responses Section -->
+                <h2 class="mt-4 text-2xl font-semibold">Responses</h2>
+                {% if respuestas %}
+                    <ul class="list-group mt-3">
+                        {% for respuesta in respuestas %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>{{ respuesta.autor.username }}</strong>: {{ respuesta.texto }}
+                                </div>
+                                {% if respuesta.autor == user %}
+                                    <a href="{% url 'eliminar-respuesta' respuesta.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="mt-3">There are no responses to this comment yet.</p>
+                {% endif %}
+
+                <!-- Response Form -->
+                <form action="{% url 'crear-respuesta' comentario.id %}" method="post" class="mt-4">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea name="texto" class="form-control" rows="3" placeholder="Write your response..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Submit Reply</button>
+                </form>
+
+                <a href="{% url 'comentarios' %}" class="btn btn-secondary w-100 mt-3">Back to Comments</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

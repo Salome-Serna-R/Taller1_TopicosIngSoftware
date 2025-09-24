@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+<div class="flex justify-center items-center bg-custom-gray py-12 px-4 sm:px-6 lg:px-8 mb-8 rounded-lg shadow-lg">
+  <div class="max-w-md w-full space-y-8">
+    <div class="text-center">
+      <h2 class="text-4xl font-bold text-gray-900 tracking-tight">
+        Create your account
+      </h2>
+      <p class="mt-2 text-sm text-gray-600">
+        Fill out the form to register
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="min-h-[75vh] flex justify-center items-center">
+  <form action="{% url 'register' %}" method="post"
+    class="bg-white p-10 rounded-lg shadow-xl max-w-md w-full transition duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+    {% csrf_token %}
+
+    <div class="space-y-6">
+      {{ form.as_p }}
+    </div>
+
+    <div class="mt-8">
+      <button type="submit"
+        class="w-full py-3 rounded-lg bg-blue-500 text-white font-semibold shadow-lg transition duration-300 ease-in-out hover:bg-blue-600 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300">
+        Register
+      </button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

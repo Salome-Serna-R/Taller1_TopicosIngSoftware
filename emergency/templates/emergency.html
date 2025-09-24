@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container my-5">
+        <div class="text-center">
+            <h1 class="display-4">Emergency Contact</h1>
+            <p class="lead">Click on the buttons below to call the emergency services.</p>
+        </div>
+        <!-- En este div se crean los botones para llamar a los servicios de emergencia --> 
+        <div class="row mt-4">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">Mental Health</h2>
+                        <button type="button" class="btn btn-danger w-100 mb-2" onclick="confirmCall('123')">Call 123</button>
+                        <button type="button" class="btn btn-warning w-100 mb-2" onclick="confirmCall('015620700')">Call Intoxication Control</button>
+                        <button type="button" class="btn btn-warning w-100" onclick="confirmCall('106')">Call Suicide Hotline</button>
+                        <!--Este script es para confirmar si se desea llamar a estos números por si se unde por error en ellos y funciona igual para el resto de botones-->
+                        <script>
+                            function confirmCall(number) {
+                                if (confirm("Are you sure you want to call " + number + "?")) {
+                                    window.location.href = "tel:" + number;
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">HealthCare</h2>
+                        <button type="button" class="btn btn-success w-100 mb-2" onclick="confirmCall('106')">Call Crisis Helpline</button>
+                        <button type="button" class="btn btn-success w-100 mb-2" onclick="confirmCall('192')">Call Substance Abuse Helpline</button>
+                        <button type="button" class="btn btn-success w-100" onclick="confirmCall('155')">Call Domestic Violence Helpline</button>
+
+                        <script>
+                            function confirmCall(number) {
+                                if (confirm("Are you sure you want to call " + number + "?")) {
+                                    window.location.href = "tel:" + number;
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">Other Services</h2>
+                        <button type="button" class="btn btn-primary w-100 mb-2" onclick="confirmCall('123')">Call Non-Emergency Police</button>
+                        <button type="button" class="btn btn-primary w-100 mb-2" onclick="confirmCall('123')">Call Fire Department</button>
+                        <button type="button" class="btn btn-primary w-100" onclick="confirmCall('123')">Call Ambulance</button>
+
+                        <script>
+                            function confirmCall(number) {
+                                if (confirm("Are you sure you want to call " + number + "?")) {
+                                    window.location.href = "tel:" + number;
+                                }
+                            }
+                        </script>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

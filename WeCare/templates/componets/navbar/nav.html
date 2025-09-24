@@ -1,0 +1,49 @@
+<div class="px-4 bg-custom-purple">
+  <div class="z-10 navbar bg-custom-purple w-full justify-between">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <label tabindex="0" class="btn btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+          </svg>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-custom-purple rounded-box w-64">
+          <li><a class="navbar-brand" href="{% url 'home' %}">About Us</a></li>
+          <li><a class="navbar-brand" href="{% url 'comentarios' %}">Forum</a></li>
+          <li><a class="navbar-brand" href="{% url 'emergency' %}">Emergency Lines</a></li>
+          <li><a class="navbar-brand" href="{% url 'library' %}">Library</a></li>
+          <li><a class="navbar-brand" href="{% url 'statistics' %}">Statistics</a></li>
+          {% if user.is_authenticated %}
+          <li><a class="navbar-brand" href="{% url 'crear-comentario' %}">Create a Publication</a></li>
+          <li><a class="navbar-brand" href="{% url 'fill_appointment' %}">Request an Appointment</a></li>
+          <li><a class="navbar-brand" href="{% url 'create_reminder' %}">Create a Reminder</a></li>
+          {% else %}
+          <li><a class="navbar-brand" href="{% url 'login' %}">Login</a></li>
+          <li><a class="navbar-brand" href="{% url 'register' %}">Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <a class="navbar-brand flex items-center text-white text-2xl font-bold transition duration-500 hover:text-gray-300" href="{% url 'home' %}">
+        {% load static %}
+        <img src="{% static 'images/P111.png' %}" alt="We Care Logo" width="80" height="50" class="d-inline-block align-text-top mr-2" />
+      </a>
+    </div>
+
+    <div class="navbar-end flex items-center space-x-4">
+      {% if user.is_authenticated %}
+      <a href="{% url 'reminder_list' %}" class="btn btn-ghost relative">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3M5.21 17h13.58M18.79 17a9 9 0 10-13.58 0h13.58z" />
+        </svg>
+        {% if future_reminder_count > 0 %}
+        <span class="badge bg-error absolute -top-1 -right-2">{{ future_reminder_count }}</span>
+        {% endif %}
+      </a>
+      <div class="flex items-center">
+        {% include 'componets/navbar/nav-user.html' %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

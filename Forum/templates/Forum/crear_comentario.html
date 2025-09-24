@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container my-5">
+        <div class="flex justify-center items-center bg-custom-gray py-12 px-4 sm:px-6 lg:px-8 mb-8 rounded-lg shadow-lg">
+            <h1 class="display-4">Create a new publication</h1>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8">
+                <form action="{% url 'crear-comentario' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea name="texto" class="form-control" rows="4" placeholder="Write your content"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Post</button>
+                    <a href="{% url 'comentarios' %}" class="btn btn-secondary w-100 mt-2">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

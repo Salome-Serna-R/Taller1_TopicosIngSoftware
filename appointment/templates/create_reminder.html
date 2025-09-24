@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Flatpickr Styles and Script -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<!-- Page title -->
+<div class="container my-5">
+    <div class="text-center">
+        <h2 class="display-4 text-gray-900 font-bold">Create a Reminder</h2>
+    </div>
+
+    <!-- Reminder Form -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6 bg-white p-4 rounded-lg shadow-lg">
+            <form id="reminderForm" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for field, errors in form.errors.items %}
+                                <li><strong>{{ field }}:</strong> {{ errors|striptags }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary w-100 mt-3">Save Reminder</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success message (hidden by default) -->
+    <div id="successMessage" style="display: none;" class="mt-5">
+        <div class="alert alert-success text-center">
+            <h2>Reminder Created Successfully!</h2>
+            <p>Your reminder has been saved.</p>
+            <a href="/" class="btn btn-secondary mt-2">Go to Home</a>
+            <a href="{% url 'create_reminder' %}" class="btn btn-primary mt-2">Create another reminder</a>
+            <a href="{% url 'reminder_list' %}" class="btn btn-secondary mt-2">View all reminders</a>
+        </div>
+    </div>
+</div>
+
+<!-- Flatpickr and AJAX Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Flatpickr for the date input
+        flatpickr("input[name='reminder_date']", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            minDate: "today",  // Prevent past dates from being selected
+        });
+
+        // Handle form submission via AJAX
+        document.getElementById('reminderForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop default form submission
+
+            var form = this;
+            var formData = new FormData(form);
+            
+            // Send form data using AJAX
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            }).then(response => response.json()).then(data => {
+                if (data.success) {
+                    // Display success message and hide form
+                    document.getElementById('successMessage').style.display = 'block';
+                    form.style.display = 'none';
+                } else {
+                    alert('There was an error creating the reminder.');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('There was an error creating the reminder.');
+            });
+        });
+    });
+</script>
+
+{% endblock content %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container my-5">
+        
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8">
+                <div class="text-center">
+                    <h1 class="display-4 text-gray-900 font-bold">My Posts</h1>
+                </div>
+                {% if comentarios %}
+                    <ul class="list-group">
+                        {% for comentario in comentarios %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>{{ comentario.autor.username }}</strong>: {{ comentario.texto }}
+                                </div>
+                                <div>
+                                    <a href="{% url 'detalle-comentario' comentario.id %}" class="btn btn-link">Details</a>
+                                    <a href="{% url 'editar-comentario' comentario.id %}" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="{% url 'eliminar-comentario' comentario.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-center mt-4">You have no comments.</p>
+                {% endif %}
+
+                <div class="mt-5"></div>
+
+                <div class="text-center">
+                    <h1 class="display-4 text-gray-900 font-bold">My Favorites</h1>
+                </div>
+                {% if comentarios_favoritos %}
+                    <ul class="list-group">
+                        {% for comentario in comentarios_favoritos %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>{{ comentario.autor.username }}</strong>: {{ comentario.texto }}
+                                </div>
+                                <div>
+                                    <a href="{% url 'detalle-comentario' comentario.id %}" class="btn btn-link">Details</a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-center mt-4">You have no favorite comments.</p>
+                {% endif %}
+
+                <div class="text-center mt-4">
+                    <a href="{% url 'comentarios' %}" class="btn btn-secondary">Return to comments</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+

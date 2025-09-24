@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="warningModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg p-6 shadow-lg max-w-md mx-auto">
+        <h2 class="text-xl font-bold text-gray-800">DISCLAIMER</h2>
+        <p class="mt-4 text-gray-600">We remind you that the postings in this forum are made by people who are not necessarily certified in mental health. If you decide to follow any of the advice presented here, we recommend that you verify its veracity.
+            It is critical that you are aware of the importance of mental health and that you act responsibly when sharing and consuming information on this forum. Your well-being is a priority.
+            </p>
+        <div class="flex justify-end mt-6">
+            <a href="{% url 'home' %}" class="btn-secondary">I dont't agree</a>
+            <button id="continueButton" class="btn-primary">I agree</button>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="flex justify-center items-center bg-custom-gray py-12 px-4 sm:px-6 lg:px-8 mb-8 rounded-lg shadow-lg">
+        <h1 class="display-4 text-gray-900 font-bold">Publications</h1>
+        {% if mensaje %}
+        <p class="lead text-gray-600">{{ mensaje }}</p>
+        {% endif %}
+    </div>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-6">
+            <form action="{% url 'buscar-comentario' %}" method="post" class="form-inline justify-content-center">
+                {% csrf_token %}
+                <input type="text" name="texto" class="form-control mr-2" placeholder="Search comments..." required>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            {% if comentarios %}
+            <ul class="list-group">
+                {% for comentario in comentarios %}
+                <li class="list-group-item mb-3" style="background-color: transparent; border: none;">
+                    <div class="p-4 shadow-sm rounded-lg" style="background-color: inherit;">
+                        <h5 class="font-bold text-primary">{{ comentario.autor.username }}</h5>
+                        <p class="text-dark">{{ comentario.texto }}</p>
+                        <div class="text-right">
+                            <a href="{% url 'detalle-comentario' comentario.id %}"
+                                class="btn btn-primary btn-sm">Details</a>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No comments available.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'crear-comentario' %}" class="btn btn-primary mb-2">Create Post</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Return</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById("continueButton").addEventListener("click", function() {
+        document.getElementById("warningModal").classList.add("hidden");
+        document.getElementById("content").classList.remove("hidden");
+    });
+</script>
+
+{% endblock content %}

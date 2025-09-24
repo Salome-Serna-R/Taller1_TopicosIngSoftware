@@ -1,0 +1,65 @@
+[
+    {
+        "title": "Understanding Stress",
+        "description": "Stress is a natural response of the body to situations we perceive as challenging or threatening. It can be positive in small doses, helping us stay alert and focused, but when it becomes chronic, it can affect our physical and mental health.",
+        "image": "media/content/images/estres1.jpg",
+        "url": "https://www.mayoclinic.org/es-es/healthy-lifestyle/stress-management/in-depth/stress/art-20046037",
+        "topic": "stress"
+    },
+    {
+        "title": "Stress Management Techniques",
+        "description": "There are various techniques to manage stress, such as meditation, deep breathing, regular physical exercise, and time management. Incorporating these strategies into daily routines can significantly improve overall well-being.",
+        "image": "media/content/images/estres2.jpg",
+        "url": "https://medlineplus.gov/spanish/ency/article/001942.htm",
+        "topic": "stress"
+    },
+    {
+        "title": "Effects of Chronic Stress",
+        "description": "Chronic stress can lead to a range of health issues, including cardiovascular diseases, sleep disorders, digestive problems, and a weakened immune system. It is crucial to recognize the signs and seek professional help if necessary.",
+        "image": "media/content/images/estres3.jpg",
+        "url": "https://www.healthy-heart.org/es/mantenga-su-corazon-sano/estres-y-sueno/?gad_source=1&gclid=CjwKCAjw9p24BhB_EiwA8ID5BqFf6ZG1wUSC-7n_57XhsOeT7tHN0MuVj1O5M2GAEoSrlDdJ2H_b6BoC2nwQAvD_BwE",
+        "topic": "stress"
+    },
+    {
+        "title": "Identifying Depression",
+        "description": "Depression is a mood disorder that affects how a person feels, thinks, and manages daily activities. Symptoms include persistent sadness, loss of interest in activities, changes in appetite, and concentration problems.",
+        "image": "media/content/images/depresion1.jpg",
+        "url": "https://www.who.int/es/news-room/fact-sheets/detail/depression",
+        "topic": "depression"
+    },
+    {
+        "title": "Treatments for Depression",
+        "description": "Treatment for depression may include psychological therapy, antidepressant medication, or a combination of both. It is important to seek professional help to determine the most suitable approach based on individual needs.",
+        "image": "media/content/images/depresion2.jpg",
+        "url": "https://www.mayoclinic.org/es-es/diseases-conditions/depression/diagnosis-treatment/drc-20356013",
+        "topic": "depression"
+    },
+    {
+        "title": "How to Support Someone with Depression",
+        "description": "Supporting someone with depression involves listening without judgment, offering companionship, and encouraging the person to seek professional help. It is essential to show empathy and understanding, recognizing that depression is a treatable condition.",
+        "image": "media/content/images/depresion3.jpg",
+        "url": "https://www.mayoclinic.org/es/diseases-conditions/depression/in-depth/depression/art-20045943",
+        "topic": "depression"
+    },
+    {
+        "title": "Understanding Anxiety",
+        "description": "Anxiety is a natural reaction to stress, characterized by feelings of tension, worry, and physical changes such as increased heart rate. However, when it is excessive or persistent, it can interfere with daily activities.",
+        "image": "media/content/images/ansiedad1.jpg",
+        "url": "https://opcionyo.com/blog/nota/143-como-comprender-ansiedad",
+        "topic": "anxiety"
+    },
+    {
+        "title": "Common Symptoms of Anxiety",
+        "description": "Symptoms of anxiety may include nervousness, agitation, fatigue, difficulty concentrating, irritability, and sleep problems. Recognizing these symptoms is the first step in seeking help and effectively managing anxiety.",
+        "image": "media/content/images/ansiedad2.jpg",
+        "url": "https://www.nimh.nih.gov/health/publications/espanol/trastorno-de-ansiedad-generalizada-cuando-no-se-pueden-controlar-las-preocupaciones-new",
+        "topic": "anxiety"
+    },
+    {
+        "title": "Strategies for Managing Anxiety",
+        "description": "Effective strategies for managing anxiety include regular exercise, relaxation techniques such as meditation and yoga, establishing daily routines, and seeking social support. These practices can help reduce anxiety levels and improve quality of life.",
+        "image": "media/content/images/ansiedad3.jpg",
+        "url": "https://ministeriointernacional.com/5-pasos-de-como-salir-de-la-ansiedad/?gad_source=1&gclid=CjwKCAjw9p24BhB_EiwA8ID5Bj4pN65_Ni4gH9cfglWQ8YmQQd2xHDrxUUCXvrR3R0b_fJM-0RYSHhoCJrYQAvD_BwE",
+        "topic": "anxiety"
+    }
+]
