@@ -40,11 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'appointment',
     'emergency',
     'Account',
     'Forum',
     'library',
+    'appointment.apps.AppointmentConfig',
 ]
 
 MIDDLEWARE = [
