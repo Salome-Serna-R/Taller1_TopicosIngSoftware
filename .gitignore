@@ -1,4 +1,17 @@
+# Python
+__pycache__/
 *.pyc
-client_secret_*.json
-token.json
+
+# macOS
+.DS_Store
+
+# Django
+db.sqlite3
+
+# Virtualenv
+env/
 venv/
+
+# Google credentials
+token.json
+client_secret*.json
